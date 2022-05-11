@@ -31,7 +31,7 @@ def page_not_found(e):
     return render_template("404.html"), 404
 
 
-def create_app():
+def create_app(a, b):
     app = Flask(__name__)
 
     app.config.from_pyfile("config.py", silent=False)
