@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block header %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+    <a class="navbar-brand" href="{{ url_for('movies.index') }}"><b>Home Page</b></a>
+    
+    
+    <a class="navbar-brand" href="{{ url_for('movies.action_board') }}"> | Action &nbsp;/</a>
+    <a class="navbar-brand" href="{{ url_for('movies.horror_board') }}"> Horror &nbsp;/</a>
+    <a class="navbar-brand" href="{{ url_for('movies.mystery_board') }}"> Mystery &nbsp;/</a>
+    <a class="navbar-brand" href="{{ url_for('movies.romance_board') }}"> Romance &nbsp;/</a>
+    <a class="navbar-brand" href="{{ url_for('movies.documentary_board') }}"> Documentary &nbsp;|</a>
+    
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+            {% if current_user.is_authenticated %}
+            <img class="propic" src="data:image/png;base64,{{current_user.format_pic}}" alt="No Image" style="width: 50px;height:50px;">
+            <div class="dropdown">
+                <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">User Settings<b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <li><a class="nav-link" href="{{ url_for('users.account') }}">Account</a></li>
+                  <li><a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a></li>
+                </ul>
+              </div>
+            {% else %}
+            <div class="dropdown">
+                <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">User Settings<b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <li><a class="nav-link" href="{{ url_for('users.login') }}">Login</a></li>
+                  <li><a class="nav-link" href="{{ url_for('users.register') }}">Register</a></li>
+                </ul>
+              </div>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+{% endblock %}

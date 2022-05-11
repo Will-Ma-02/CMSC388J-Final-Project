@@ -1,0 +1,57 @@
+{% extends "header.html" %}
+{% block content %}
+<div class="row" style="display: inline-block; margin: 10px;">
+    <div class="col" style="border-width: 5px; border-style: solid;">
+        <h1>Welcome Back {{ current_user.username }}</h1>
+    </div>
+    <div class="col">
+        {# Profile picture #}
+        <img class="pic" src="data:image/png;base64,{{image}}" alt="image" style="width: 150px;height:150px; margin: 10px;">
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <form action="" method="post">
+            {{ username_form.csrf_token }}
+            <div class="form-group">
+                {{ username_form.username.label(class="form-control-label") }}
+                {{ username_form.username(class="form-control form-control-lg") }}
+
+                {% if username_form.username.errors %}
+                <div class="alert alert-warning" role="alert">
+                    {% for error in username_form.username.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ username_form.submit }}
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form2.csrf_token }}
+            <div class="form-group">
+              {{ form2.picture.label(class="form-control-label")}}
+              {{ form2.picture(class="form-control form-control-lg") }}
+
+              {% if form2.picture.errors %}
+              <div class="alert alert-warning" role="alert">
+                {% for error in form2.picture.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+              </div>
+              {% endif %}
+      
+            </div>
+            {{ form2.submit() }}
+        </form>
+    </div>
+</div>
+<h4 style="color: red">All Reports Made Against You:</h4>
+</a>
+{% endblock %}>
