@@ -1,0 +1,1 @@
+penis.slice(0,1)
